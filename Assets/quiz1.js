@@ -62,17 +62,45 @@ function questStyler () {
     questionsEl.style.fontWeight = "bold";
     questionsEl.style.fontSize = "30px";
 }
+
+// Function to give styles to the answers
+function ansStyler () {
+    answersEl.style.textAlign = "left";
+    answersEl.style.position = "absolute";
+    answersEl.style.marginLeft = "500px";
+    answersEl.style.marginTop = "20px";
+    
+}
 // function nextQuestDisplay () {
     // for (var i=0; i < questionArray.length; i++) {
     //    if  
 
-// Function to display a question when the start button is clicked
+// Function to display the first question when the start button is clicked
 startBtn.addEventListener("click", function questionDisplay () {
     headingEl.innerHTML = "";
     questionsEl.innerHTML = "";
     var questArrText = questionArray[0].text;
     var newQuest = questionsEl.innerHTML = questArrText; 
     questStyler()
+    
+});
+
+// Function to display the first list of answer button when the start button is clicked
+startBtn.addEventListener("click", function answerDisplay () {
+    var removeStartBtn = startBtn.remove();
+    answersEl.innerHTML = "";
+    var questArrAns = questionArray[0].choices;
+    console.log(questArrAns)
+    for (i = 0; i < questArrAns.length; i++) {
+    var newAnsBtn = document.createElement("button");
+    var spacers = document.createElement("br");
+    newAnsBtn.innerHTML = questArrAns[i];
+    answersEl.appendChild(newAnsBtn);
+    answersEl.appendChild(spacers);
+    ansStyler()
+    
+
+}
     
 });
 
