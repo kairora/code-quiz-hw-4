@@ -1,4 +1,4 @@
-HTML Main
+HTML Index (Main)
 1. Create an anchor for "View Highscores" 
 2. Create a countdown inside div
 3. create an empty div to accept instructions, questions, high scores page on 2nd HTML file. Starts with header and a paragraph
