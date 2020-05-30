@@ -21,7 +21,7 @@ CSS
 
 
 JavaScript
-1. When Start quiz is clicked, 
+1. When Start Quiz button is clicked, 
     1A. start countdown timer from 75 seconds
     1B. clear instructions
     1C. Add in first question from a question array?
