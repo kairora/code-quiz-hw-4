@@ -1,6 +1,6 @@
 HTML Index (Main)
-1. Create an anchor for "View Highscores" 
-2. Create a countdown inside div
+1. Create an header div with anchor for "View Highscores" 
+2. Create a countdown timer inside header div
 3. create an empty div to accept instructions, questions, high scores page on 2nd HTML file. Starts with header and a paragraph
 4. create an empty div to accept a list of buttons
 5. create button with text "start quiz"
