@@ -10,7 +10,7 @@ HTML Index (Main)
 HTML High scores
 1. Div with header
 2. Div with an ordered list of scores - could also just use a <br>
-2. Add two button with link to first html and to clear out the scores.
+2. Add two buttons with link to first html and to clear out the scores.
 
 CSS
 1. Top left: view high scores
