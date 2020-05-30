@@ -1,0 +1,47 @@
+HTML Main
+1. Create an anchor for "View Highscores" 
+2. Create a countdown inside div
+3. create an empty div to accept instructions, questions, high scores page on 2nd HTML file. Starts with header and a paragraph
+4. create an empty div to accept a list of buttons
+5. create button with text "start quiz"
+6. create an empty div underneath div in #3 to display "Correct" or "Wrong"
+
+
+HTML High scores
+1. Div with header
+2. Div with an ordered list of scores - could also just use a <br>
+2. Add two button with link to first html and to clear out the scores.
+
+CSS
+1. Top left: view high scores
+2. Top right: countdown timer
+3. main quiz question div centered horizontally + vertically
+4. buttons with rounded edges, color purple (if I choose)
+
+
+
+JavaScript
+1. When Start quiz is clicked, 
+    1A. start countdown timer from 75 seconds
+    1B. clear instructions
+    1C. Add in first question from a question array?
+2. When an answer button is clicked:
+    2A. check if it is the correct answer 
+        2A-1: If yes, display "correct" + go to the next  question
+        2A-2: If not correct, display "Wrong!" + subtract 15 seconds from timer + go to the next question
+    2B. Collect/store # of right answers
+3. If timer runs out
+    3A. Display score 
+    3B. Display an input form to input initials
+    4B. Display button to submit initials
+4. After submit button is clicked: 
+    4A. Link to 2nd HTML High Score Page w/ local storage - 2 buttons: "Go Back" and "Clear highscores"
+    4B. If go back is clicked, go back to the first html page to restart the test
+    4C. If Clear  high scores is clicked, erase all 
+
+        
+
+
+
+
+
