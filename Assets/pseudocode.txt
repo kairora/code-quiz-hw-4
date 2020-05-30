@@ -28,7 +28,7 @@ JavaScript
 2. When an answer button is clicked:
     2A. check if it is the correct answer 
         2A-1: If yes, display "correct" + go to the next  question
-        2A-2: If not correct, display "Wrong!" + subtract 15 seconds from timer + go to the next question
+        2A-2: If not correct, display "Wrong!" + subtract 10 seconds from timer + go to the next question
     2B. Collect/store # of right answers
 3. If timer runs out stop it at 0 and:
     3A. Display score 

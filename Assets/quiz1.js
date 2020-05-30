@@ -4,9 +4,11 @@ var timeDown = 75;
 
 // start button element variable
 var startBtn = document.querySelector(".button1");
-timerEl.innerHTML = "Time: " + timeDown;
-// Timer Function
 
+
+
+// Timer Function
+timerEl.innerHTML = "Time: " + timeDown;
 startBtn.addEventListener("click", function newTimer() {
     var timeDown = 75;
     var timerInterval = setInterval(function() {
