@@ -1,10 +1,15 @@
 // timer variables
 var timerEl = document.querySelector(".time");
-var timeDown = 5;
+var timeDown = 75;
 
+// start button element variable
+var startBtn = document.querySelector(".button1");
+timerEl.innerHTML = "Time: " + timeDown;
 // Timer Function
-function newTimer() {
-  var timerInterval = setInterval(function() {
+
+startBtn.addEventListener("click", function newTimer() {
+    var timeDown = 75;
+    var timerInterval = setInterval(function() {
     timeDown--;
     timerEl.innerHTML = "Time: " + timeDown;
 
@@ -13,6 +18,5 @@ function newTimer() {
         return;
     }
   }, 1000);
-  
-}
-newTimer()
+});
+
