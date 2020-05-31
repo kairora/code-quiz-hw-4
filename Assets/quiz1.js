@@ -128,12 +128,10 @@ function answerClick(event) {
     currentQuestion++;
     if (selectedButton.hasAttribute("data")) {
             judgeEl.innerHTML = "Correct!";
-            judgeEl.style.borderTop = "thin solid gray";
             goNextQuestion();
         } else {
             timeDown - 10;
             judgeEl.innerHTML = "Wrong!";
-            judgeEl.style.borderTop = "thin solid gray";
             goNextQuestion();
         }
     };
