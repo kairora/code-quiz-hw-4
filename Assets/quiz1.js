@@ -68,7 +68,7 @@ var questionArray = [
         answer: 0
     },
     {
-        text: "8. Inside what location n your HTML file is the best practice for linking a script tag?",
+        text: "8. Inside what location in your HTML file is the best practice for linking a script tag?",
         choices: ["1. top of the html tag", "2. bottom of the body tag", "3. bottom of a div tag", "4. top of the footer tag",],
         answer: 1
     },
@@ -77,8 +77,9 @@ var questionArray = [
 // Function to give styles to the questions
 function questStyler () {
     questionsEl.style.textAlign = "left";
-    questionsEl.style.position = "absolute";
+    questionsEl.style.position = "relative";
     questionsEl.style.marginLeft = "30%";
+    // questionsEl.style.marginBottom = "15px";
     questionsEl.style.fontWeight = "bold";
     questionsEl.style.fontSize = "30px";
 }
@@ -87,7 +88,7 @@ function ansStyler () {
     answersEl.style.textAlign = "left";
     answersEl.style.position = "absolute";
     answersEl.style.marginLeft = "30%";
-    answersEl.style.marginTop = "40px";
+    answersEl.style.marginTop = "15px";
     
 }
 // Function to display the first set of answer choices in buttons when the start button is clicked
@@ -112,13 +113,14 @@ function goNextQuestion() {
     var questArrAns = questionArray[currentQuestion].choices; 
     for (i = 0; i < questArrAns.length; i++) {
         var newAnsBtn = document.createElement("button");
+        ansStyler();
             if (i == questionArray[currentQuestion].answer) {
                 newAnsBtn.setAttribute("data", "data-answer"); 
             }
         newAnsBtn.innerHTML = questArrAns[i];
         answersEl.appendChild(newAnsBtn);
         newAnsBtn.style.display = "block";
-        ansStyler();
+        
         newAnsBtn.addEventListener("click", answerClick);
     }
 };
