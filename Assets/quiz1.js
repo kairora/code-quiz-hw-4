@@ -8,12 +8,12 @@ var headingEl = document.querySelector(".heading");
 var questionsEl = document.querySelector(".questions");
 var answersEl = document.querySelector(".answers");
 var judgeEl = document.querySelector(".judge");
+// var choiceBtn = document.querySelector("button")
 // variable to increment questions
 var currentQuestion = 0;
 selectedButton = null;
 
 myAnswer = null;
-
 
 // Timer Function
 timerEl.innerHTML = "Time: " + timeDown;
@@ -29,7 +29,6 @@ startBtn.addEventListener("click", function newTimer() {
     }
   }, 1000);
 });
-
 
 // Array of Questions - the first five questions/answers are taken from the homework demo in the assets folder of the assignment
 var questionArray = [
@@ -75,7 +74,6 @@ var questionArray = [
     },
 
 ]
-
 // Function to give styles to the questions
 function questStyler () {
     questionsEl.style.textAlign = "left";
@@ -84,7 +82,6 @@ function questStyler () {
     questionsEl.style.fontWeight = "bold";
     questionsEl.style.fontSize = "30px";
 }
-
 // Function to give styles to the answers
 function ansStyler () {
     answersEl.style.textAlign = "left";
@@ -93,70 +90,55 @@ function ansStyler () {
     answersEl.style.marginTop = "40px";
     
 }
-
-// Function to display the first question when the start button is clicked
-startBtn.addEventListener("click", function questionDisplay () {
-    // remove content from the h1 tag with heading class
+// Function to display the first set of answer choices in buttons when the start button is clicked
+startBtn.addEventListener("click", function answerDisplay () {
+    // calls function to go to the next question
+    goNextQuestion()
+    } 
+);
+function goNextQuestion() {
     headingEl.innerHTML = "";
     // removes content from the p tag with questions class
     questionsEl.innerHTML = "";
+    var removeBtns = document.querySelectorAll("button");
+    for (i = 0; i < removeBtns.length; i++) {
+        removeBtns[i].remove();
+    }
     // grabs the first question from the array of Q&A objects
-    var questArrText = questionArray[0].text;
+    var questArrText = questionArray[currentQuestion].text;
     // inserts that question into the questions element
     var newQuest = questionsEl.innerHTML = questArrText; 
-    questStyler()
-    
-});
-
-// Function to display the first set of answer choices in buttons when the start button is clicked
-startBtn.addEventListener("click", function answerDisplay () {
-    // removes the start button
-    var removeStartBtn = startBtn.remove();
-    
-    goNextQuestion()
-        // newAnsBtn.addEventListener("click", answerClick) 
-    } 
-);
-
-function goNextQuestion() {
+    questStyler();
     var questArrAns = questionArray[currentQuestion].choices; 
     for (i = 0; i < questArrAns.length; i++) {
         var newAnsBtn = document.createElement("button");
             if (i == questionArray[currentQuestion].answer) {
                 newAnsBtn.setAttribute("data", "data-answer"); 
-            } 
-        var spacers = document.createElement("br");
+            }
         newAnsBtn.innerHTML = questArrAns[i];
         answersEl.appendChild(newAnsBtn);
-        answersEl.appendChild(spacers);
+        newAnsBtn.style.display = "block";
         ansStyler();
+        newAnsBtn.addEventListener("click", answerClick);
     }
 };
-
-
 function answerClick(event) {
+    // grab the one that was clicked
     var selectedButton = event.target;
-    SelectedButton.addEventListener("click",function ansCheck() {
-    for (i = 1; i < questionArray.length; i++) {
-        if (selectedButton.hasAttribute("data")) {
+    currentQuestion++;
+    if (selectedButton.hasAttribute("data")) {
             judgeEl.innerHTML = "Correct!";
             judgeEl.style.borderTop = "thin solid gray";
-            // goNextQuestion;
+            goNextQuestion();
         } else {
             timeDown - 10;
             judgeEl.innerHTML = "Wrong!";
             judgeEl.style.borderTop = "thin solid gray";
-            // goNextQuestion;
+            goNextQuestion();
         }
-}
-    })};
+    };
 
 
-
-// Function to check if the answer is correct and display judgement, go to next question
-// function ansJudge() {
-//     var 
-// }
 
 
 
