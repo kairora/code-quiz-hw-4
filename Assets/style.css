@@ -3,10 +3,12 @@ a {
     display: inline-block;
     padding: 10px 0 0 10px;
     font-weight: bold;
+    font-size: 25px;
 }
 
 .time {
     display: inline-block;
+    font-size: 25px;
 }
 
 .container {
@@ -27,12 +29,12 @@ h1 {
 p {
     margin:auto;
     width: 800px;
-    font-size: 25px;
+    font-size: 30px;
 }
 button {
     border: none;
     padding: 10px 30px;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
     opacity: 0.6;
     transition: 0.3s;
