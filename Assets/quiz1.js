@@ -18,16 +18,16 @@ myAnswer = null;
 // Timer Function
 timerEl.innerHTML = "Time: " + timeDown;
 startBtn.addEventListener("click", function newTimer() {
-    // var timeDown = 75;
     var timerInterval = setInterval(function() {
     timeDown--;
     timerEl.innerHTML = "Time: " + timeDown;
-
+    
     if (timeDown <= 0) {
         clearInterval(timerInterval);
         return;
     }
   }, 1000);
+ 
 });
 
 // Array of Questions - the first five questions/answers are taken from the homework demo in the assets folder of the assignment
@@ -79,7 +79,6 @@ function questStyler () {
     questionsEl.style.textAlign = "left";
     questionsEl.style.position = "relative";
     questionsEl.style.marginLeft = "30%";
-    // questionsEl.style.marginBottom = "15px";
     questionsEl.style.fontWeight = "bold";
     questionsEl.style.fontSize = "30px";
 }
@@ -112,18 +111,20 @@ function goNextQuestion() {
     questStyler();
     var questArrAns = questionArray[currentQuestion].choices; 
     for (i = 0; i < questArrAns.length; i++) {
+        if (i >= questArrAns.length) {
+            return;
+        } else {
         var newAnsBtn = document.createElement("button");
-        ansStyler();
             if (i == questionArray[currentQuestion].answer) {
                 newAnsBtn.setAttribute("data", "data-answer"); 
             }
         newAnsBtn.innerHTML = questArrAns[i];
         answersEl.appendChild(newAnsBtn);
         newAnsBtn.style.display = "block";
-        
+        ansStyler();
         newAnsBtn.addEventListener("click", answerClick);
     }
-};
+}};
 function answerClick(event) {
     // grab the one that was clicked
     var selectedButton = event.target;
@@ -132,7 +133,7 @@ function answerClick(event) {
             judgeEl.innerHTML = "Correct!";
             goNextQuestion();
         } else {
-            timeDown - 10;
+            timeDown -= 10;
             judgeEl.innerHTML = "Wrong!";
             goNextQuestion();
         }
