@@ -24,7 +24,8 @@ startBtn.addEventListener("click", function newTimer() {
     
     if (timeDown <= 0) {
         clearInterval(timerInterval);
-        return;
+        timeDown = 0;
+        timerEl.innerHTML = "Time: " + timeDown
     }
   }, 1000);
  
@@ -72,7 +73,6 @@ var questionArray = [
         choices: ["1. top of the html tag", "2. bottom of the body tag", "3. bottom of a div tag", "4. top of the footer tag",],
         answer: 1
     },
-
 ]
 // Function to give styles to the questions
 function questStyler () {
@@ -104,18 +104,28 @@ function goNextQuestion() {
     for (i = 0; i < removeBtns.length; i++) {
         removeBtns[i].remove();
     }
+    // var questArrTexts = questionArray[i];
+    if (currentQuestion >= questionArray.length) {
+            return;
+        }
     // grabs the first question from the array of Q&A objects
     var questArrText = questionArray[currentQuestion].text;
     // inserts that question into the questions element
     var newQuest = questionsEl.innerHTML = questArrText; 
+    // styles the question
     questStyler();
+    // variable for the first array of answer choices
     var questArrAns = questionArray[currentQuestion].choices; 
+    // loops through answer choice array
     for (i = 0; i < questArrAns.length; i++) {
         if (i >= questArrAns.length) {
             return;
         } else {
+        // and creates a button for each answer choice in the array
         var newAnsBtn = document.createElement("button");
+            // checks if the index matches the integer value for the answer in the questions array
             if (i == questionArray[currentQuestion].answer) {
+                // sets a data attribute
                 newAnsBtn.setAttribute("data", "data-answer"); 
             }
         newAnsBtn.innerHTML = questArrAns[i];
@@ -133,8 +143,9 @@ function answerClick(event) {
             judgeEl.innerHTML = "Correct!";
             goNextQuestion();
         } else {
-            timeDown -= 10;
+             timeDown -= 10;
             judgeEl.innerHTML = "Wrong!";
+            
             goNextQuestion();
         }
     };
