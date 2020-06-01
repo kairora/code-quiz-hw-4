@@ -34,12 +34,11 @@ startBtn.addEventListener("click", function newTimer() {
     timerEl.innerHTML = "Time: " + timeDown;
     if (currentQuestion >= questionArray.length) {
         clearInterval(timerInterval);
-        timeDown = timeDown;
         timerEl.innerHTML = "Time: " + timeDown
     } else if (timeDown <= 0) {
         clearInterval(timerInterval);
         timeDown = 0;
-        timerEl.innerHTML = "Time: " + timeDown
+        timerEl.innerHTML = "Time: 0"
     }
   }, 1000);
 });
