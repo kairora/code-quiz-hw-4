@@ -141,13 +141,21 @@ function answerClick(event) {
     currentQuestion++;
     if (selectedButton.hasAttribute("data")) {
             judgeEl.innerHTML = "Correct!";
+            judgeEl.style.color= "green";
             goNextQuestion();
         } else {
              timeDown -= 10;
             judgeEl.innerHTML = "Wrong!";
+            judgeEl.style.color = "red";
             goNextQuestion();
         }
     };
+
+function finalForm() {
+    if (time === 0) {
+        judgeEl.innerHTML = "";
+    }
+}
 
 
 
