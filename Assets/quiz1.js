@@ -32,17 +32,17 @@ startBtn.addEventListener("click", function newTimer() {
     var timerInterval = setInterval(function() {
     timeDown--;
     timerEl.innerHTML = "Time: " + timeDown;
-    
-    if (timeDown <= 0) {
+    if (currentQuestion >= questionArray.length) {
+        clearInterval(timerInterval);
+        timeDown = timeDown;
+        timerEl.innerHTML = "Time: " + timeDown
+    } else if (timeDown <= 0) {
         clearInterval(timerInterval);
         timeDown = 0;
-        console.log(timeDown)
         timerEl.innerHTML = "Time: " + timeDown
     }
   }, 1000);
- 
 });
-
 // Array of Questions - the first five questions/answers are taken from the homework demo in the assets folder of the assignment
 var questionArray = [
     {
@@ -100,7 +100,6 @@ function ansStyler () {
     answersEl.style.position = "absolute";
     answersEl.style.marginLeft = "30%";
     answersEl.style.marginTop = "15px";
-    
 }
 // Function to display the first set of answer choices in buttons when the start button is clicked
 startBtn.addEventListener("click", function answerDisplay () {
@@ -108,9 +107,6 @@ startBtn.addEventListener("click", function answerDisplay () {
     goNextQuestion()
     } 
 );
-
-
-
 function goNextQuestion() {
     headingEl.innerHTML = "";
     // removes content from the p tag with questions class
@@ -126,7 +122,6 @@ function goNextQuestion() {
             headingEl.innerHTML = "All done!";
             clearInterval(timerInterval);
             questionsEl.innerHTML = "Your score is " + timeDown;
-
         }
     // grabs the first question from the array of Q&A objects
     var questArrText = questionArray[currentQuestion].text;
@@ -157,14 +152,7 @@ function goNextQuestion() {
         // styles the answer element
         ansStyler();
         // listens for clicks on the new buttons for right or wrong answers
-        newAnsBtn.addEventListener("click", answerClick);
-        
-        // var noMoreQuest = currentQuestion >= questionArray.length
-        // if (timeDown === 0 ) {
-        // judgeEl.innerHTML = "";
-        // headingEl.innerHTML = "All done!";
-        // }
-        
+        newAnsBtn.addEventListener("click", answerClick);       
     }
 }};
 function answerClick(event) {
