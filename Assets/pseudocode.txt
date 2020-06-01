@@ -45,6 +45,8 @@ JavaScript
         
 var initials = document.getElementById("myInput").value;
 
-
+function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
 
 

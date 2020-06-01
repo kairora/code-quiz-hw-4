@@ -1,15 +1,17 @@
 // timer variables
 var timerEl = document.querySelector(".time");
 var timeDown = 75;
-
-// Element variable
+// Element variables
 var startBtn = document.querySelector(".button1");
 var headingEl = document.querySelector(".heading");
 var questionsEl = document.querySelector(".questions");
 var answersEl = document.querySelector(".answers");
 var judgeEl = document.querySelector(".judge");
-// var choiceBtn = document.querySelector("button")
-// variable to increment questions
+var mainEl = document.querySelector(".main");
+var breakEl = document.querySelector("br");
+// variable for incrementing questions and counting right/wrong answers
+var wrongNumbers = 0;
+var rightNumbers = 0;
 var currentQuestion = 0;
 selectedButton = null;
 
@@ -33,7 +35,7 @@ var timerInterval = setInterval(function() {
 
 startBtn.addEventListener("click", function newTimer() {
     var timerInterval = setInterval(function() {
-    timeDown--;
+    // timeDown--;
     timerEl.innerHTML = "Time: " + timeDown;
     if (currentQuestion >= questionArray.length) {
         clearInterval(timerInterval);
@@ -92,7 +94,8 @@ var questionArray = [
 function questStyler () {
     questionsEl.style.textAlign = "left";
     questionsEl.style.position = "relative";
-    questionsEl.style.marginLeft = "30%";
+    questionsEl.style.marginLeft = "auto";
+    questionsEl.style.marginRight = "auto";
     questionsEl.style.fontWeight = "bold";
     questionsEl.style.fontSize = "30px";
 }
@@ -100,9 +103,18 @@ function questStyler () {
 function ansStyler () {
     answersEl.style.textAlign = "left";
     answersEl.style.position = "absolute";
-    answersEl.style.marginLeft = "30%";
+    answersEl.style.marginLeft = "auto";
+    answersEl.style.marginRight = "auto";
     answersEl.style.marginTop = "15px";
 }
+// // Function to count numbers Wrong
+// function numWrong() {
+//     wrongNumbers = 0;
+//     if(judgeEl.innerText === "Wrong!") {
+//         wrongNumbers++;
+//         wrongNumbers;
+//     }
+// }
 // Function to display the first set of answer choices in buttons when the start button is clicked
 startBtn.addEventListener("click", function answerDisplay () {
     // calls function to go to the next question
@@ -118,20 +130,37 @@ function goNextQuestion() {
         removeBtns[i].remove();
     }
     // var questArrTexts = questionArray[i];
-    if (currentQuestion >= questionArray.length || timeDown == 0) {
+    if (timeDown == 0 || currentQuestion >= questionArray.length  ) {
+            questionsEl.innerHTML = "";
             // return;
-            judgeEl.innerHTML = "";
-            headingEl.innerHTML = "All done!";
+            // judgeEl.innerHTML = "";
             clearInterval(timerInterval);
-            questionsEl.innerHTML = "Your final score is " + timeDown + "!";
+            headingEl.style.marginTop = "1%";
+            headingEl.style.fontSize = "60px";
+            headingEl.innerHTML = "All done!";
+            if (rightNumbers === 1) {
+                questionsEl.innerHTML = "Your final score is " + rightNumbers + " question correct at "+ timeDown + " seconds left!"
+            } else {questionsEl.innerHTML = "Your final score is " + rightNumbers + " questions correct at "+ timeDown + " seconds left!"};
+            
             var form = document.createElement("form");
             var initInput = document.createElement("input");
             initInput.setAttribute("type", "text");
+            initInput.setAttribute("placeholder", "Input your initials");
             form.appendChild(initInput);
             var submitBtn = document.createElement("button");
-            submitBtn.innerText = "Submit"
+            submitBtn.innerText = "Submit";
+            submitBtn.setAttribute("onclick", 'location.href="assets/hsindex.html"');
+            submitBtn.style.marginLeft = "25px";
+            // questionsEl.style.margin = "0";
+            // questionsEl.style.width = "300px";
+            // questionsEl.style.display = "inline-block";
+            // questionsEl.style.marginLeft = "0";
+            // initInput.style.margin = "0";
+            // initInput.style.display = "inline-block";
+            answersEl.remove();
+            startBtn.remove();
             questionsEl.appendChild(form);
-            questionsEl.appendChild(submitBtn)
+            questionsEl.appendChild(submitBtn);
         }
     // grabs the first question from the array of Q&A objects
     var questArrText = questionArray[currentQuestion].text;
@@ -162,7 +191,7 @@ function goNextQuestion() {
         // styles the answer element
         ansStyler();
         // listens for clicks on the new buttons for right or wrong answers
-        newAnsBtn.addEventListener("click", answerClick);       
+        newAnsBtn.addEventListener("click", answerClick);     
     }
 }};
 function answerClick(event) {
@@ -172,7 +201,13 @@ function answerClick(event) {
     if (selectedButton.hasAttribute("data")) {
             judgeEl.innerHTML = "Correct!";
             judgeEl.style.color= "green";
+            judgeEl.style.borderBottom = "4px solid";
+                judgeEl.style.borderImageSource = "linear-gradient(45deg, rgb(0,143,104), rgb(250,224,66))";
+                judgeEl.style.borderImageSlice = "1";
+            rightNumbers++;
             goNextQuestion();
+            console.log(rightNumbers);  
+
         } else {
                 timeDown -= 10;
                 if (timeDown <= 0) {
@@ -180,7 +215,13 @@ function answerClick(event) {
                 };
                 judgeEl.innerHTML = "Wrong!";
                 judgeEl.style.color = "red";
+                judgeEl.style.borderBottom = "4px solid";
+                judgeEl.style.borderImageSource = "linear-gradient(45deg, rgb(250,24,104), rgb(234,22,226))";
+                judgeEl.style.borderImageSlice = "1";
+                judgeEl.style.marginBottom = "20px";
+                wrongNumbers++;
                 goNextQuestion();
+                console.log(wrongNumbers);  
             }  
     };
 
