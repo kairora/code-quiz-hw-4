@@ -31,7 +31,7 @@ JavaScript
         2A-1: If yes, display "correct" for 2 seconds + go to the next question
         2A-2: If not correct, display "Wrong!" for 2 seconds and disappear + subtract 10 seconds from timer + go to the next question
     2B. Collect/store # of right answers
-2.5 If all questions are correct, display initial form + submit button
+2.5 If all questions are correct, display initial form + submit
 3. If timer runs out stop it at 0 and:
     3A. Display score 
     3B. Display an input form to input initials
@@ -40,9 +40,10 @@ JavaScript
     4A. Link to 2nd HTML High Score Page w/ local storage - 2 buttons: "Go Back" and "Clear highscores"
     4B. If go back is clicked, go back to the first html page to restart the test
     4C. If Clear  high scores is clicked, erase all 
+    
 
         
-
+var initials = document.getElementById("myInput").value;
 
 
 

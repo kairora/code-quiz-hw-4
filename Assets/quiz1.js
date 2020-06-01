@@ -17,6 +17,17 @@ myAnswer = null;
 
 // Timer Function
 timerEl.innerHTML = "Time: " + timeDown;
+var timerInterval = setInterval(function() {
+    timeDown--;
+    timerEl.innerHTML = "Time: " + timeDown;
+    
+    if (timeDown <= 0) {
+        clearInterval(timerInterval);
+        timeDown = 0;
+        timerEl.innerHTML = "Time: " + timeDown
+    }
+  }, 1000);
+
 startBtn.addEventListener("click", function newTimer() {
     var timerInterval = setInterval(function() {
     timeDown--;
@@ -25,6 +36,7 @@ startBtn.addEventListener("click", function newTimer() {
     if (timeDown <= 0) {
         clearInterval(timerInterval);
         timeDown = 0;
+        console.log(timeDown)
         timerEl.innerHTML = "Time: " + timeDown
     }
   }, 1000);
@@ -96,6 +108,9 @@ startBtn.addEventListener("click", function answerDisplay () {
     goNextQuestion()
     } 
 );
+
+
+
 function goNextQuestion() {
     headingEl.innerHTML = "";
     // removes content from the p tag with questions class
@@ -105,8 +120,13 @@ function goNextQuestion() {
         removeBtns[i].remove();
     }
     // var questArrTexts = questionArray[i];
-    if (currentQuestion >= questionArray.length) {
-            return;
+    if (currentQuestion >= questionArray.length || timeDown === 0) {
+            // return;
+            judgeEl.innerHTML = "";
+            headingEl.innerHTML = "All done!";
+            clearInterval(timerInterval);
+            questionsEl.innerHTML = "Your score is " + timeDown;
+
         }
     // grabs the first question from the array of Q&A objects
     var questArrText = questionArray[currentQuestion].text;
@@ -128,11 +148,23 @@ function goNextQuestion() {
                 // sets a data attribute
                 newAnsBtn.setAttribute("data", "data-answer"); 
             }
+        // inserts an answer choice into the new button
         newAnsBtn.innerHTML = questArrAns[i];
+        // appends this new button to the answer element
         answersEl.appendChild(newAnsBtn);
+        // displays the button in a block
         newAnsBtn.style.display = "block";
+        // styles the answer element
         ansStyler();
+        // listens for clicks on the new buttons for right or wrong answers
         newAnsBtn.addEventListener("click", answerClick);
+        
+        // var noMoreQuest = currentQuestion >= questionArray.length
+        // if (timeDown === 0 ) {
+        // judgeEl.innerHTML = "";
+        // headingEl.innerHTML = "All done!";
+        // }
+        
     }
 }};
 function answerClick(event) {
@@ -144,20 +176,17 @@ function answerClick(event) {
             judgeEl.style.color= "green";
             goNextQuestion();
         } else {
-             timeDown -= 10;
-            judgeEl.innerHTML = "Wrong!";
-            judgeEl.style.color = "red";
-            goNextQuestion();
-        }
+                timeDown -= 10;
+                if (timeDown <= 0) {
+                    timeDown = 0;
+                }
+                judgeEl.innerHTML = "Wrong!";
+                judgeEl.style.color = "red";
+                goNextQuestion();
+            }  
     };
 
-function finalForm() {
-    if (time === 0) {
-        judgeEl.innerHTML = "";
-    }
-}
-
-
+// var noMoreQuest = currentQuestion >= questionArray.length;
 
 
 
