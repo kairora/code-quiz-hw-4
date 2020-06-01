@@ -145,7 +145,6 @@ function answerClick(event) {
         } else {
              timeDown -= 10;
             judgeEl.innerHTML = "Wrong!";
-            
             goNextQuestion();
         }
     };
