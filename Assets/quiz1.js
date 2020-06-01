@@ -21,10 +21,13 @@ var timerInterval = setInterval(function() {
     timeDown--;
     timerEl.innerHTML = "Time: " + timeDown;
     
-    if (timeDown <= 0) {
+    if (currentQuestion >= questionArray.length) {
+        clearInterval(timerInterval);
+        timerEl.innerHTML = "Time: " + timeDown
+    } else if (timeDown <= 0) {
         clearInterval(timerInterval);
         timeDown = 0;
-        timerEl.innerHTML = "Time: " + timeDown
+        timerEl.innerHTML = "Time: 0"
     }
   }, 1000);
 
@@ -115,12 +118,20 @@ function goNextQuestion() {
         removeBtns[i].remove();
     }
     // var questArrTexts = questionArray[i];
-    if (currentQuestion >= questionArray.length || timeDown === 0) {
+    if (currentQuestion >= questionArray.length || timeDown == 0) {
             // return;
             judgeEl.innerHTML = "";
             headingEl.innerHTML = "All done!";
             clearInterval(timerInterval);
-            questionsEl.innerHTML = "Your score is " + timeDown;
+            questionsEl.innerHTML = "Your final score is " + timeDown + "!";
+            var form = document.createElement("form");
+            var initInput = document.createElement("input");
+            initInput.setAttribute("type", "text");
+            form.appendChild(initInput);
+            var submitBtn = document.createElement("button");
+            submitBtn.innerText = "Submit"
+            questionsEl.appendChild(form);
+            questionsEl.appendChild(submitBtn)
         }
     // grabs the first question from the array of Q&A objects
     var questArrText = questionArray[currentQuestion].text;
@@ -166,7 +177,7 @@ function answerClick(event) {
                 timeDown -= 10;
                 if (timeDown <= 0) {
                     timeDown = 0;
-                }
+                };
                 judgeEl.innerHTML = "Wrong!";
                 judgeEl.style.color = "red";
                 goNextQuestion();
