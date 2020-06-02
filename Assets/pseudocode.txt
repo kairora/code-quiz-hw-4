@@ -40,9 +40,14 @@ JavaScript
     4A. Link to 2nd HTML High Score Page w/ local storage - 2 buttons: "Go Back" and "Clear highscores"
     4B. If go back is clicked, go back to the first html page to restart the test
     4C. If Clear  high scores is clicked, erase all 
-    
-
-        
+5. localStorage
+    1. get a variable for the timeDown at the end
+    2. get a variable for the user input from the form
+    3. save both items into an array to be used for local storage
+    4. run a loop so that everytime the submit button is clicked, the current timeDown and user input are stored as a new object in the array.
+     -- render this in localStorage to check if worked -- 
+    5. take that local storage and everytime the button is clicked, stringify the values and into 1 string and insert as a new li with a loop.
+    append that li to the ol tag in hsindex.html        
 var initials = document.getElementById("myInput").value;
 
 function insertAfter(newNode, referenceNode) {

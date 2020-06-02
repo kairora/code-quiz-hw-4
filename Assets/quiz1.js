@@ -133,8 +133,6 @@ function goNextQuestion() {
     // var questArrTexts = questionArray[i];
     if (timeDown === 0 || currentQuestion >= questionArray.length  ) {  
         questionsEl.innerHTML = "";
-            // return;
-            // judgeEl.innerHTML = "";
             clearInterval(timerInterval);
             headingEl.style.marginTop = "1%";
             headingEl.style.fontSize = "60px";
@@ -167,14 +165,13 @@ function goNextQuestion() {
             submitBtn.style.borderRadius = "50px";
             submitBtn.style.textDecoration = "none";
             submitBtn.style.fontSize = "18px";
-            // submitBtn.style.hover.opacity = "1";
             submitBtn.style.width = "12%";
             answersEl.remove();
             startBtn.remove();
             newForm.appendChild(form);
             form.appendChild(submitBtn);
             
-            
+   
         }
     // grabs the first question from the array of Q&A objects
     var questArrText = questionArray[currentQuestion].text;
@@ -207,7 +204,7 @@ function goNextQuestion() {
         // styles the answer element
         ansStyler();
         // listens for clicks on the new buttons for right or wrong answers
-        newAnsBtn.addEventListener("click", answerClick);     
+        newAnsBtn.addEventListener("click", answerClick);   
     }
 }};
 function answerClick(event) {
