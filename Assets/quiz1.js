@@ -153,7 +153,7 @@ function goNextQuestion() {
             answersEl.remove();
             startBtn.remove();
             questionsEl.appendChild(form);
-            questionsEl.appendChild(submitBtn);
+            form.appendChild(submitBtn);
         }
     // grabs the first question from the array of Q&A objects
     var questArrText = questionArray[currentQuestion].text;
@@ -196,9 +196,10 @@ function answerClick(event) {
     if (selectedButton.hasAttribute("data")) {
             judgeEl.innerHTML = "Correct!";
             judgeEl.style.color= "green";
-            judgeEl.style.borderBottom = "4px solid";
-                judgeEl.style.borderImageSource = "linear-gradient(45deg, rgb(0,143,104), rgb(250,224,66))";
+            judgeEl.style.borderTop = "4px solid";
+                judgeEl.style.borderImageSource = "linear-gradient(45deg, rgb(0,220,96), rgb(250,165,242))";
                 judgeEl.style.borderImageSlice = "1";
+                judgeEl.style.marginTop = "20px";
             rightNumbers++;
             goNextQuestion(); 
         } else {
@@ -210,10 +211,10 @@ function answerClick(event) {
                 };
                 judgeEl.innerHTML = "Wrong!";
                 judgeEl.style.color = "red";
-                judgeEl.style.borderBottom = "4px solid";
-                judgeEl.style.borderImageSource = "linear-gradient(45deg, rgb(250,24,104), rgb(234,22,226))";
+                judgeEl.style.borderTop = "4px solid";
+                judgeEl.style.borderImageSource = "linear-gradient(45deg, rgb(250,24,84), rgb(234,22,200))";
                 judgeEl.style.borderImageSlice = "1";
-                judgeEl.style.marginBottom = "20px";
+                judgeEl.style.marginTop = "20px";
                 wrongNumbers++;
                 goNextQuestion();
                 console.log(wrongNumbers);  

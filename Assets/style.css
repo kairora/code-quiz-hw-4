@@ -47,6 +47,7 @@ input {
   display: inline-block;
   border-radius: 4px;
   border: solid purple 3px;
+  margin-left: 30%;
   
 }
 input:focus {
