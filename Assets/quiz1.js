@@ -9,6 +9,7 @@ var answersEl = document.querySelector(".answers");
 var judgeEl = document.querySelector(".judge");
 var mainEl = document.querySelector(".main");
 var breakEl = document.querySelector("br");
+var newForm = document.querySelector(".newform")
 // variable for incrementing questions and counting right/wrong answers
 var wrongNumbers = 0;
 var rightNumbers = 0;
@@ -146,13 +147,14 @@ function goNextQuestion() {
             initInput.setAttribute("type", "text");
             initInput.setAttribute("placeholder", "Input your initials");
             form.appendChild(initInput);
-            var submitBtn = document.createElement("button");
+            var submitBtn = document.createElement("a");
+            submitBtn.setAttribute("href", "./assets/hsindex.html");
             submitBtn.innerText = "Submit";
-            submitBtn.setAttribute("onclick", 'location.href="assets/hsindex.html"');
+            submitBtn.setAttribute("class", "submit");
             submitBtn.style.marginLeft = "25px";
             answersEl.remove();
             startBtn.remove();
-            questionsEl.appendChild(form);
+            newForm.appendChild(form);
             form.appendChild(submitBtn);
         }
     // grabs the first question from the array of Q&A objects
