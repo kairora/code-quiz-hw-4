@@ -130,8 +130,8 @@ function goNextQuestion() {
         removeBtns[i].remove();
     }
     // var questArrTexts = questionArray[i];
-    if (timeDown == 0 || currentQuestion >= questionArray.length  ) {
-            questionsEl.innerHTML = "";
+    if (timeDown === 0 || currentQuestion >= questionArray.length  ) {  
+        questionsEl.innerHTML = "";
             // return;
             // judgeEl.innerHTML = "";
             clearInterval(timerInterval);
@@ -141,7 +141,6 @@ function goNextQuestion() {
             if (rightNumbers === 1) {
                 questionsEl.innerHTML = "Your final score is " + rightNumbers + " question correct at "+ timeDown + " seconds left!"
             } else {questionsEl.innerHTML = "Your final score is " + rightNumbers + " questions correct at "+ timeDown + " seconds left!"};
-            
             var form = document.createElement("form");
             var initInput = document.createElement("input");
             initInput.setAttribute("type", "text");
@@ -201,15 +200,12 @@ function answerClick(event) {
                 judgeEl.style.borderImageSource = "linear-gradient(45deg, rgb(0,143,104), rgb(250,224,66))";
                 judgeEl.style.borderImageSlice = "1";
             rightNumbers++;
-            goNextQuestion();
-            console.log(rightNumbers);  
-
+            goNextQuestion(); 
         } else {
                 timeDown -= 10;
                 if (timeDown <= 0) {
                     timeDown = 0;
                 };
-                timeDown;
                 judgeEl.innerHTML = "Wrong!";
                 judgeEl.style.color = "red";
                 judgeEl.style.borderBottom = "4px solid";
