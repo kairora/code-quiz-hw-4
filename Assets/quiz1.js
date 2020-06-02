@@ -20,9 +20,8 @@ myAnswer = null;
 // Timer Function
 timerEl.innerHTML = "Time: " + timeDown;
 var timerInterval = setInterval(function() {
-    timeDown--;
     timerEl.innerHTML = "Time: " + timeDown;
-    
+    // timeDown--;
     if (currentQuestion >= questionArray.length) {
         clearInterval(timerInterval);
         timerEl.innerHTML = "Time: " + timeDown
@@ -35,8 +34,9 @@ var timerInterval = setInterval(function() {
 
 startBtn.addEventListener("click", function newTimer() {
     var timerInterval = setInterval(function() {
-    // timeDown--;
+        timeDown--;
     timerEl.innerHTML = "Time: " + timeDown;
+    
     if (currentQuestion >= questionArray.length) {
         clearInterval(timerInterval);
         timerEl.innerHTML = "Time: " + timeDown
