@@ -102,7 +102,7 @@ function questStyler () {
 // Function to give styles to the answers
 function ansStyler () {
     answersEl.style.textAlign = "left";
-    answersEl.style.position = "absolute";
+    answersEl.style.position = "relative";
     answersEl.style.marginLeft = "auto";
     answersEl.style.marginRight = "auto";
     answersEl.style.marginTop = "15px";
@@ -151,12 +151,6 @@ function goNextQuestion() {
             submitBtn.innerText = "Submit";
             submitBtn.setAttribute("onclick", 'location.href="assets/hsindex.html"');
             submitBtn.style.marginLeft = "25px";
-            // questionsEl.style.margin = "0";
-            // questionsEl.style.width = "300px";
-            // questionsEl.style.display = "inline-block";
-            // questionsEl.style.marginLeft = "0";
-            // initInput.style.margin = "0";
-            // initInput.style.display = "inline-block";
             answersEl.remove();
             startBtn.remove();
             questionsEl.appendChild(form);
@@ -186,6 +180,8 @@ function goNextQuestion() {
         newAnsBtn.innerHTML = questArrAns[i];
         // appends this new button to the answer element
         answersEl.appendChild(newAnsBtn);
+        // sets the width of answer div to 800px
+        answersEl.style.width = "800px"
         // displays the button in a block
         newAnsBtn.style.display = "block";
         // styles the answer element
@@ -213,6 +209,7 @@ function answerClick(event) {
                 if (timeDown <= 0) {
                     timeDown = 0;
                 };
+                timeDown;
                 judgeEl.innerHTML = "Wrong!";
                 judgeEl.style.color = "red";
                 judgeEl.style.borderBottom = "4px solid";
