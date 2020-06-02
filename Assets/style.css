@@ -5,12 +5,10 @@ a {
     font-weight: bold;
     font-size: 25px;
 }
-
 .time {
     display: inline-block;
     font-size: 25px;
 }
-
 .container {
     position: absolute;
     width: 100%;
@@ -51,10 +49,8 @@ input {
   border: solid purple 3px;
   
 }
-
 input:focus {
-    border: 4px solid lightskyblue;
-    
+    border: 4px solid lightskyblue;  
 }
 button {
     border: none;
@@ -70,5 +66,4 @@ button {
     text-decoration: none;
     cursor: pointer;
 }
-
 button:hover {opacity: 1}

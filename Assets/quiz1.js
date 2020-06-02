@@ -204,7 +204,9 @@ function answerClick(event) {
         } else {
                 timeDown -= 10;
                 if (timeDown <= 0) {
+                    currentQuestion = null;
                     timeDown = 0;
+                    questionsEl.innerHTML = "";
                 };
                 judgeEl.innerHTML = "Wrong!";
                 judgeEl.style.color = "red";
