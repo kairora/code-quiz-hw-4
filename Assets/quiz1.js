@@ -147,15 +147,34 @@ function goNextQuestion() {
             initInput.setAttribute("type", "text");
             initInput.setAttribute("placeholder", "Input your initials");
             form.appendChild(initInput);
+            // A series of attributes and styles to the anchor tag like a button
             var submitBtn = document.createElement("a");
             submitBtn.setAttribute("href", "./assets/hsindex.html");
             submitBtn.innerText = "Submit";
             submitBtn.setAttribute("class", "submit");
-            submitBtn.style.marginLeft = "25px";
+            submitBtn.style.marginLeft = "15px";
+            submitBtn.style.padding = "10px 30px";
+            submitBtn.style.color = "white";
+            submitBtn.style.backgroundColor = "rgb(187, 153, 255)"
+            submitBtn.addEventListener("mouseenter", noOpacFunc);
+            submitBtn.addEventListener("mouseleave", opacFunc);
+            function noOpacFunc () {
+                submitBtn.style.backgroundColor = "rgb(95, 36, 161)"
+            }
+            function opacFunc () {
+                submitBtn.style.backgroundColor = "rgb(187, 153, 255)"
+            }
+            submitBtn.style.borderRadius = "50px";
+            submitBtn.style.textDecoration = "none";
+            submitBtn.style.fontSize = "18px";
+            // submitBtn.style.hover.opacity = "1";
+            submitBtn.style.width = "12%";
             answersEl.remove();
             startBtn.remove();
             newForm.appendChild(form);
             form.appendChild(submitBtn);
+            
+            
         }
     // grabs the first question from the array of Q&A objects
     var questArrText = questionArray[currentQuestion].text;
