@@ -16,7 +16,6 @@ var wrongNumbers = 0;
 var rightNumbers = 0;
 var currentQuestion = 0;
 selectedButton = null;
-
 myAnswer = null;
 
 // Timer Function
@@ -110,14 +109,6 @@ function ansStyler () {
     answersEl.style.marginRight = "auto";
     answersEl.style.marginTop = "15px";
 }
-// // Function to count numbers Wrong
-// function numWrong() {
-//     wrongNumbers = 0;
-//     if(judgeEl.innerText === "Wrong!") {
-//         wrongNumbers++;
-//         wrongNumbers;
-//     }
-// }
 // Function to display the first set of answer choices in buttons when the start button is clicked
 if (startBtn != undefined) {startBtn.addEventListener("click", function answerDisplay () {
     // calls function to go to the next question
@@ -152,30 +143,10 @@ function goNextQuestion() {
             form.appendChild(initInput);
             // A series of attributes and styles to the anchor tag like a button
             var submitBtn = document.createElement("button");
-            // submitBtn.setAttribute("href", "./assets/hsindex.html");
             submitBtn.innerText = "Submit";
             submitBtn.setAttribute("class", "submit");
-        //     submitBtn.style.marginLeft = "15px";
-        //     submitBtn.style.padding = "10px 30px";
-        //     submitBtn.style.color = "white";
-        //     submitBtn.style.backgroundColor = "rgb(187, 153, 255)"
-        //     submitBtn.addEventListener("mouseenter", noOpacFunc);
-        //     submitBtn.addEventListener("mouseleave", opacFunc);
-        //     function noOpacFunc () {
-        //         submitBtn.style.backgroundColor = "rgb(95, 36, 161)"
-        //     }
-        //     function opacFunc () {
-        //         submitBtn.style.backgroundColor = "rgb(187, 153, 255)"
-        //     }
-        //     submitBtn.style.borderRadius = "50px";
-        //     submitBtn.style.textDecoration = "none";
-        //     submitBtn.style.fontSize = "18px";
-        //     submitBtn.style.width = "12%";
             answersEl.remove();
             startBtn.remove();
-
-        // submitBtn.addEventListener("click", saveScore(initInput.value, timeDown));
-
         submitBtn.addEventListener("click", function() { saveScore  (initInput.value, timeDown);
         });
         form.appendChild(submitBtn);        
@@ -245,9 +216,6 @@ function answerClick(event) {
                 console.log(wrongNumbers);  
             }  
     };
-
-// var noMoreQuest = currentQuestion >= questionArray.length;
-
 function saveScore(name, score) {
     var scoreObj = {initials: name, points: score};
     var scoreArr = [];
@@ -262,7 +230,6 @@ function saveScore(name, score) {
     parsedScores.push(scoreObj);
     localStorage.setItem("allScores", JSON.stringify(parsedScores));
 }
-    
   window.location.href = "./hsindex.html";
 }
 
@@ -278,7 +245,6 @@ if (scoredList != undefined) {
 
     });
 }
-
 clearBtn.addEventListener("click", function() {
     localStorage.removeItem("allScores");
     scoredList.innerHTML = "";
