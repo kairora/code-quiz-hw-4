@@ -9,7 +9,8 @@ var answersEl = document.querySelector(".answers");
 var judgeEl = document.querySelector(".judge");
 var mainEl = document.querySelector(".main");
 var breakEl = document.querySelector("br");
-var newForm = document.querySelector(".newform")
+var clearBtn = document.querySelector(".clearscores");
+// var scoredList = document.querySelector("#scorelist");
 // variable for incrementing questions and counting right/wrong answers
 var wrongNumbers = 0;
 var rightNumbers = 0;
@@ -19,7 +20,7 @@ selectedButton = null;
 myAnswer = null;
 
 // Timer Function
-timerEl.innerHTML = "Time: " + timeDown;
+if(timerEl != undefined) {timerEl.innerHTML = "Time: " + timeDown;
 var timerInterval = setInterval(function() {
     timerEl.innerHTML = "Time: " + timeDown;
     // timeDown--;
@@ -32,8 +33,8 @@ var timerInterval = setInterval(function() {
         timerEl.innerHTML = "Time: 0"
     }
   }, 1000);
-
-startBtn.addEventListener("click", function newTimer() {
+}
+if (startBtn != undefined) {startBtn.addEventListener("click", function newTimer() {
     var timerInterval = setInterval(function() {
         timeDown--;
     timerEl.innerHTML = "Time: " + timeDown;
@@ -48,6 +49,7 @@ startBtn.addEventListener("click", function newTimer() {
     }
   }, 1000);
 });
+}
 // Array of Questions - the first five questions/answers are taken from the homework demo in the assets folder of the assignment
 var questionArray = [
     {
@@ -117,11 +119,12 @@ function ansStyler () {
 //     }
 // }
 // Function to display the first set of answer choices in buttons when the start button is clicked
-startBtn.addEventListener("click", function answerDisplay () {
+if (startBtn != undefined) {startBtn.addEventListener("click", function answerDisplay () {
     // calls function to go to the next question
     goNextQuestion()
     } 
 );
+}
 function goNextQuestion() {
     headingEl.innerHTML = "";
     // removes content from the p tag with questions class
@@ -139,39 +142,43 @@ function goNextQuestion() {
             headingEl.innerHTML = "All done!";
             if (rightNumbers === 1) {
                 questionsEl.innerHTML = "Your final score is " + rightNumbers + " question correct at "+ timeDown + " seconds left!"
+                localStorage.setItem("time", "this.timeDown");
             } else {questionsEl.innerHTML = "Your final score is " + rightNumbers + " questions correct at "+ timeDown + " seconds left!"};
-            var form = document.createElement("form");
+            localStorage.setItem("time", "this.timeDown");
+            var form = document.querySelector(".newform");
             var initInput = document.createElement("input");
             initInput.setAttribute("type", "text");
             initInput.setAttribute("placeholder", "Input your initials");
             form.appendChild(initInput);
             // A series of attributes and styles to the anchor tag like a button
-            var submitBtn = document.createElement("a");
-            submitBtn.setAttribute("href", "./assets/hsindex.html");
+            var submitBtn = document.createElement("button");
+            // submitBtn.setAttribute("href", "./assets/hsindex.html");
             submitBtn.innerText = "Submit";
             submitBtn.setAttribute("class", "submit");
-            submitBtn.style.marginLeft = "15px";
-            submitBtn.style.padding = "10px 30px";
-            submitBtn.style.color = "white";
-            submitBtn.style.backgroundColor = "rgb(187, 153, 255)"
-            submitBtn.addEventListener("mouseenter", noOpacFunc);
-            submitBtn.addEventListener("mouseleave", opacFunc);
-            function noOpacFunc () {
-                submitBtn.style.backgroundColor = "rgb(95, 36, 161)"
-            }
-            function opacFunc () {
-                submitBtn.style.backgroundColor = "rgb(187, 153, 255)"
-            }
-            submitBtn.style.borderRadius = "50px";
-            submitBtn.style.textDecoration = "none";
-            submitBtn.style.fontSize = "18px";
-            submitBtn.style.width = "12%";
+        //     submitBtn.style.marginLeft = "15px";
+        //     submitBtn.style.padding = "10px 30px";
+        //     submitBtn.style.color = "white";
+        //     submitBtn.style.backgroundColor = "rgb(187, 153, 255)"
+        //     submitBtn.addEventListener("mouseenter", noOpacFunc);
+        //     submitBtn.addEventListener("mouseleave", opacFunc);
+        //     function noOpacFunc () {
+        //         submitBtn.style.backgroundColor = "rgb(95, 36, 161)"
+        //     }
+        //     function opacFunc () {
+        //         submitBtn.style.backgroundColor = "rgb(187, 153, 255)"
+        //     }
+        //     submitBtn.style.borderRadius = "50px";
+        //     submitBtn.style.textDecoration = "none";
+        //     submitBtn.style.fontSize = "18px";
+        //     submitBtn.style.width = "12%";
             answersEl.remove();
             startBtn.remove();
-            newForm.appendChild(form);
-            form.appendChild(submitBtn);
-            
-   
+
+        // submitBtn.addEventListener("click", saveScore(initInput.value, timeDown));
+
+        submitBtn.addEventListener("click", function() { saveScore  (initInput.value, timeDown);
+        });
+        form.appendChild(submitBtn);        
         }
     // grabs the first question from the array of Q&A objects
     var questArrText = questionArray[currentQuestion].text;
@@ -241,7 +248,38 @@ function answerClick(event) {
 
 // var noMoreQuest = currentQuestion >= questionArray.length;
 
+function saveScore(name, score) {
+    var scoreObj = {initials: name, points: score};
+    var scoreArr = [];
+    scoreArr.push(scoreObj);
+    
+    var stringArr = JSON.stringify(scoreArr);
+    if (localStorage.getItem("allScores") == null) {
+        localStorage.setItem("allScores", stringArr);
+} else {
+    var getScores = localStorage.getItem("allScores");
+    var parsedScores = JSON.parse(getScores);
+    parsedScores.push(scoreObj);
+    localStorage.setItem("allScores", JSON.stringify(parsedScores));
+}
+    
+  window.location.href = "./assets/hsindex.html";
+}
 
+var scoredList = document.querySelector("#scorelist");
+if (scoredList != undefined) {
+    var getScores = localStorage.getItem("allScores");
+    var parsedScores = JSON.parse(getScores);
+    parsedScores.forEach(element => {
+        var listItem = document.createElement("LI");
+        scoredList.appendChild(listItem);
+        listItem.innerHTML = element.initials + " - " +
+        element.points;
 
+    });
+}
 
-
+clearBtn.addEventListener("click", function() {
+    localStorage.removeItem("allScores");
+    scoredList.innerHTML = "";
+});

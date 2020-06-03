@@ -1,13 +1,11 @@
-a {
+/* a {
     width: 93%;
     display: inline-block;
     padding: 10px 0 0 10px;
 }
-
 .time {
     display: inline-block;
-}
-
+} */
 .container {
     position: absolute;
     width: 100%;
@@ -15,7 +13,6 @@ a {
     top: 30%;
 
 }
-
 main {
     text-align: center;
     display: block;
@@ -23,10 +20,11 @@ main {
 h1 {
     font-size: 40px;
 }
-p {
+li {
     margin:auto;
     width: 600px;
     font-size: 25px;
+    text-align: left;
 }
 button {
     border: none;
@@ -42,5 +40,4 @@ button {
     text-decoration: none;
     cursor: pointer;
 }
-
 button:hover {opacity: 1}
