@@ -263,7 +263,7 @@ function saveScore(name, score) {
     localStorage.setItem("allScores", JSON.stringify(parsedScores));
 }
     
-  window.location.href = "./assets/hsindex.html";
+  window.location.href = "./hsindex.html";
 }
 
 var scoredList = document.querySelector("#scorelist");
