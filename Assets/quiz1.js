@@ -230,7 +230,7 @@ function saveScore(name, score) {
     parsedScores.push(scoreObj);
     localStorage.setItem("allScores", JSON.stringify(parsedScores));
 }
-  window.location.href = "./hsindex.html";
+  window.location.href = "./hscore.html";
 }
 
 var scoredList = document.querySelector("#scorelist");
