@@ -22,7 +22,6 @@ myAnswer = null;
 if(timerEl != undefined) {timerEl.innerHTML = "Time: " + timeDown;
 var timerInterval = setInterval(function() {
     timerEl.innerHTML = "Time: " + timeDown;
-    // timeDown--;
     if (currentQuestion >= questionArray.length) {
         clearInterval(timerInterval);
         timerEl.innerHTML = "Time: " + timeDown
@@ -131,10 +130,10 @@ function goNextQuestion() {
             headingEl.style.marginTop = "1%";
             headingEl.style.fontSize = "60px";
             headingEl.innerHTML = "All done!";
+            var scoreTime = timeDown;
             if (rightNumbers === 1) {
-                questionsEl.innerHTML = "Your final score is " + rightNumbers + " question correct at "+ timeDown + " seconds left!"
-                localStorage.setItem("time", "this.timeDown");
-            } else {questionsEl.innerHTML = "Your final score is " + rightNumbers + " questions correct at "+ timeDown + " seconds left!"};
+                questionsEl.innerHTML = "Your final score is " + rightNumbers + " question correct at "+ scoreTime + " seconds left!"
+            } else {questionsEl.innerHTML = "Your final score is " + rightNumbers + " questions correct at "+ scoreTime + " seconds left!"};
             localStorage.setItem("time", "this.timeDown");
             var form = document.querySelector(".newform");
             var initInput = document.createElement("input");
@@ -147,7 +146,7 @@ function goNextQuestion() {
             submitBtn.setAttribute("class", "submit");
             answersEl.remove();
             startBtn.remove();
-        submitBtn.addEventListener("click", function() { saveScore  (initInput.value, timeDown);
+        submitBtn.addEventListener("click", function() { saveScore  (initInput.value, scoreTime);
         });
         form.appendChild(submitBtn);        
         }
@@ -212,8 +211,7 @@ function answerClick(event) {
                 judgeEl.style.borderImageSlice = "1";
                 judgeEl.style.marginTop = "20px";
                 wrongNumbers++;
-                goNextQuestion();
-                console.log(wrongNumbers);  
+                goNextQuestion();  
             }  
     };
 function saveScore(name, score) {
