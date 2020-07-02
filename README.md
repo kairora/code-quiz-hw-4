@@ -19,7 +19,7 @@ After starting the quiz, the student will be taken through eight questions one-b
 ![Quiz Judgement Photo](./Assets/judge.PNG)
 
 
-Once the user finishes answering all the questions or the countdown reaches 0, the quiz is over and the user is prompted to enter their initials to an input.  They can then click the "Submit" button to be taken to the high score page where their recent score will display along with their previous scores.  
+Once the user finishes answering all the questions, gets too many wrong, or the countdown reaches 0, the quiz is over and the user is prompted to enter their initials to an input.  They can then click the "Submit" button to be taken to the high score page where their recent score will display along with their previous scores.  
 
 ![Quiz Done Photo](./Assets/done.PNG)
 
